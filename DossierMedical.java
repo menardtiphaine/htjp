@@ -90,29 +90,29 @@ class DossierMedical {
     }
 
     public void trierDates() {
-        Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
+        Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);// on copie le vecteur de fiches dans un nouveau vecteur copieFiches
 
-        while (!copieFiches.isEmpty()) {
+        while (!copieFiches.isEmpty()) {//tant que copieFiches n'est pas vide
             // on cherche la fiche de soins de date minimale :
-            int imin = 0;
-            FicheDeSoins f1 = copieFiches.get(imin);
-            for (int i = 1; i < copieFiches.size(); i++) {
-                FicheDeSoins f2 = copieFiches.get(i);
-                if (f2.getDate().compareTo(f1.getDate()) < 0) {
-                    imin = i;
-                    f1 = f2;
+            int imin = 0;//on initialise l'indice de la fiche la plus ancienne comme étant égale à 0
+            FicheDeSoins f1 = copieFiches.get(imin);// création d'une instance de FicheDeSoins étant égale à la fiche du vecteur à l'indice imin 
+            for (int i = 1; i < copieFiches.size(); i++) {//on parcours le vecteur
+                FicheDeSoins f2 = copieFiches.get(i);// création d'une instance de FicheDeSoins 
+                if (f2.getDate().compareTo(f1.getDate()) < 0) {// si f2 a une date plus ancienne que f1
+                    imin = i;// l'indice où se trouve la date minimum correspond à l'indice de la fiche ayant la date la plus ancienne
+                    f1 = f2;// On attribut à la variable f1 la fiche f2
                 }
-            }
+            }//après le for, f1 aura la fiche la plus ancienne
             // on affiche la fiche de soins trouvee :
-            f1.afficher();
+            f1.afficher();// on affiche la fiche f1 qui est la plus ancienne
             System.out.println("------------------------");
             //on la supprime de la liste :
-            copieFiches.remove(imin);
+            copieFiches.remove(imin);// on enlève la fiche la plus ancienne, pour comparer ensuite les autres
         }
     }
 
     // tri generique :
-    public void trier(ComparaisonFiches c) {
+    public void trier(ComparaisonFiches c) {// même chose que trierDates sauf que on va utiliser la méthode comparer du paramètre c
         Vector<FicheDeSoins> copieFiches = new Vector<FicheDeSoins>(fiches);
 
         while (!copieFiches.isEmpty()) {
